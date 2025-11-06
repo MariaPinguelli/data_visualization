@@ -1,21 +1,24 @@
 from modules.read_data import read_data
 from modules.clean_data import clean_data
+from modules.format_data import format_data_types
+from modules.maps.bubble_map import bubble_map
 
 def main():
-    # ler dados de entrada
-    raw_data, raw_fieldnames = read_data()
+    print('1. Leitura de dados')
+    raw_data = read_data('./data/cnuc_2025_08.csv')
 
-    # Tratar dados de entrada
-    data, fields = clean_data(raw_data, raw_fieldnames)
+    print('2. Limpeza de dados')
+    table = clean_data(raw_data)
 
-    print(f"\n🎉 DADOS PRONTOS PARA ANÁLISE:")
-    print(f"   • Registros: {len(data)}")
-    print(f"   • Colunas: {len(fields)}")
-    print(f"   • Colunas disponíveis: {fields}")
+    print('3. Formatação de dados')
+    table = format_data_types(table)
 
-    # manipular para as visualizações
+    print('4. Visualização de Bubble Map')
+    bubble_map(table)
 
-    # visualização 1
+    # fig_uc, df_uc = create_hybrid_uc_map(data)
+    # fig_uc.show()
+    # fig_uc.write_html('./visualizacoes/mapa_ucs_interativo.html')
     # visualização 2
 
 if __name__ == '__main__':
