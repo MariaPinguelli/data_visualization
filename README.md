@@ -4,10 +4,10 @@
 ---
 ### Entrega 2
 ### Visualização 1
-- Onde estão as UCs do Brasil? Mapa simples
+- Onde estão as UCs do Brasil? Bubble map
 
 ### Visualização 2
-- Quantas UCs temos por categoria? treemap
+- Quantas UCs temos por categoria? Treemap
 ---
 
 ### Entrega 3

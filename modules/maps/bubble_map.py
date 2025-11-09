@@ -8,7 +8,7 @@ def bubble_map(table):
     """ 
         UC centralizada entre os municipios do qual faz parte, 
         seu tamanho é referente a sua área, 
-        e ao passar o mouse pode visualizar a lista de municipios daquela UC
+        e ao passar o mouse pode visualizar a lista de municipios daquela UC e outros dados
     """
     
     saved_table = read_data(DATASET_COORDS)
@@ -25,11 +25,12 @@ def bubble_map(table):
         tiles='cartodb positron'
     )
     
+    print('     Adicionando pontos no mapa...')
     for i, row in table.iterrows():
         square_meter = row['area'] * 10000
         radius = np.round(np.sqrt(square_meter / np.pi), 2)
         
-        cities_list = row['municipios'].split(';')
+        cities_list = row['municipios'].split(' - ')
         
         tooltip_string = f"""
             🌳 <b>{row['nome']}</b><br>
@@ -50,4 +51,5 @@ def bubble_map(table):
             tooltip=folium.Tooltip(tooltip_string, sticky=True)
         ).add_to(map)
 
+    print('     Mapa gerado!')
     map.save('./output_maps/bubble_map.html')
