@@ -21,10 +21,8 @@ def process_data(table):
         'area': 'sum'
     }).reset_index()
 
-    # ORDENAR por data (importante para cumsum)
     yearly_data = yearly_data.sort_values(['grupo', 'data_criacao'])
     
-    # CALCULAR VALORES ACUMULADOS por categoria
     yearly_data['id_acumulado'] = yearly_data.groupby('grupo')['id'].cumsum()
     yearly_data['area_acumulada'] = yearly_data.groupby('grupo')['area'].cumsum()
 
@@ -38,16 +36,14 @@ def create_simple_stackplot(table):
     
     data = process_data(table)
     
-    # Pegar todos os grupos únicos para inicialização
     grupos_unicos = data['grupo'].unique().tolist()
 
     legend_data = pd.DataFrame({'grupo': grupos_unicos})
     
-    # Seleção com toggle e inicialização
     selection = alt.selection_point(
         fields=['grupo'],
         bind='legend',
-        value=[{"grupo": grupo} for grupo in grupos_unicos]  # Inicia com todos selecionados
+        value=[{"grupo": grupo} for grupo in grupos_unicos]
     )
     
     chart = alt.Chart(data).mark_area(
@@ -90,7 +86,7 @@ def stackplot(table):
     chart = create_simple_stackplot(table)
     
     try:
-        chart.save('./output_maps/stackplot_percent.html')
+        chart.save('./output_maps/stackplot.html')
     except Exception as e:
         print(f"Erro ao salvar: {e}")
         print("Retornando chart para visualização...")
