@@ -3,3 +3,5 @@ matplotlib
 folium
 squarify
 plotly
+mpld3
+altair
