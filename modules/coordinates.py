@@ -3,9 +3,18 @@ import numpy as np
 import unicodedata
 import re
 import difflib
+from modules.read_data import read_data
+from config import DATASET_COORDS
 
 def add_coordinates(table):
     """ Calcula e adiciona colunas de latitude e longitude ás UCs """
+
+    saved_table = read_data(DATASET_COORDS)
+
+    if not (saved_table is None or saved_table.empty):
+        return saved_table
+    
+    print('     Adicionando coordenadas')
     
     new_columns = table.apply(_process_row, axis=1)
     table_with_coords = pd.concat([table, new_columns], axis=1)

@@ -1,8 +1,6 @@
 import numpy as np
 import folium
 from modules.coordinates import add_coordinates
-from modules.read_data import read_data
-from config import DATASET_COORDS
 
 def bubble_map(table):
     """ 
@@ -11,13 +9,7 @@ def bubble_map(table):
         e ao passar o mouse pode visualizar a lista de municipios daquela UC e outros dados
     """
     
-    saved_table = read_data(DATASET_COORDS)
-
-    if saved_table is None or saved_table.empty:
-        print('     Adicionando coordenadas')
-        table = add_coordinates(table)
-    else:
-        table = saved_table
+    table = add_coordinates(table)
 
     map = folium.Map(
         location=[-10, -55],

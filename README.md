@@ -12,7 +12,7 @@
 
 ### Entrega 3
 ### Visualização 1
-- Progresso de criação de UCs e área protegida ao longo dos anos - Mapa com timeseries
+- Progresso de criação de UCs e área protegida ao longo dos anos - streamgraph
 
 ### Visualização 2
-- Quanto é a área de cada bioma abrangido pelas UCs?
+- Quanto é a área de cada bioma abrangido pelas UCs? - sunburst
